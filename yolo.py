@@ -5,16 +5,17 @@ import time
 import cv2
 import os
 import subprocess
-from gtts import gTTS
+import pyttsx3
 
 
 #speakgtts
 def speak_from_string_text(speaktext):
 	if speaktext:
-		audio = gTTS(text= speaktext,lang = 'en',slow = False)
-		audio.save("output.mp3")
-		#subprocess.call(["C:\Program Files\VideoLAN\VLC\vlc.exe","-nodisp","-autoexit","output.mp3"])
-		os.system('output.mp3 &')
+		engine = pyttsx3.init()
+		engine.say(speaktext)
+		engine.runAndWait()
+		engine.stop()
+		
 	
 #construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
